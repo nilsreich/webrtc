@@ -8,13 +8,15 @@ const io = new Server({
 
 )
 io.on("connection", (socket) => {
-    socket.on('answer', (msg) => {
-        socket.broadcast.emit('answer', msg);
+    socket.on('signal', (msg) => {
+        socket.broadcast.emit('signal', msg);
     });
-    socket.on('offer', (msg) => {
 
-        socket.broadcast.emit('offer', msg);
-    });
+    socket.on('ice-candidate', (msg) => {
+        socket.broadcast.emit('ice-candidate', msg);
+    }
+    );
+
 });
 
 io.listen(3001);
